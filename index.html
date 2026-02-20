@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Poornima Eraiah | Senior Interior Designer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --charcoal: #2C3531;
+            --alabaster: #F4F1EA;
+            --terracotta: #D9B08C;
+            --taupe: #8C867B;
+            --white: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--alabaster);
+            color: var(--charcoal);
+            line-height: 1.8;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 400;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+            color: var(--taupe);
+            font-weight: 400;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 5%;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            color: var(--charcoal);
+            margin-bottom: 3rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 2px;
+            background-color: var(--terracotta);
+            margin: 15px auto 0;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            background-color: var(--charcoal);
+            color: var(--white);
+            text-decoration: none;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            border: none;
+            transition: background-color 0.3s ease;
+            cursor: pointer;
+            border-radius: 4px;
+            margin-top: 1.5rem;
+        }
+
+        .btn:hover {
+            background-color: var(--terracotta);
+        }
+
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(to right, var(--white) 0%, var(--alabaster) 100%);
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            line-height: 1.1;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero h2 {
+            font-size: 1.4rem;
+            color: var(--terracotta);
+            font-family: 'Montserrat', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 2rem;
+        }
+
+        .about {
+            padding: 8rem 0;
+            background-color: var(--white);
+        }
+
+        .about-text {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            font-size: 1.1rem;
+        }
+
+        .projects {
+            padding: 8rem 0;
+            background-color: var(--alabaster);
+        }
+
+        .project-card {
+            background: var(--white);
+            margin-bottom: 5rem;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.05);
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+        }
+
+        .project-info {
+            padding: 4rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .project-category {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--terracotta);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .tech-list {
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        .tech-list li {
+            margin-bottom: 0.8rem;
+            font-size: 0.95rem;
+            position: relative;
+            padding-left: 1.5rem;
+            color: var(--taupe);
+        }
+
+        .tech-list li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--terracotta);
+            font-size: 1.2rem;
+        }
+
+        .carousel {
+            position: relative;
+            height: 100%;
+            min-height: 400px;
+            width: 100%;
+            overflow: hidden;
+            background-color: var(--charcoal);
+        }
+
+        .carousel-slides {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .slide {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            transition: 200ms opacity ease-in-out;
+            transition-delay: 200ms;
+        }
+
+        .slide > img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        .slide[data-active] {
+            opacity: 1;
+            z-index: 1;
+            transition-delay: 0ms;
+        }
+
+        .carousel-button {
+            position: absolute;
+            z-index: 2;
+            background: none;
+            border: none;
+            font-size: 2.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: rgba(255, 255, 255, 0.7);
+            cursor: pointer;
+            border-radius: 4px;
+            padding: 0 .5rem;
+            background-color: rgba(0, 0, 0, 0.2);
+            transition: all 0.2s ease;
+        }
+
+        .carousel-button:hover,
+        .carousel-button:focus {
+            color: white;
+            background-color: rgba(0, 0, 0, 0.5);
+            outline: none;
+        }
+
+        .carousel-button.prev { left: 1rem; }
+        .carousel-button.next { right: 1rem; }
+
+        .experience {
+            padding: 8rem 0;
+            background-color: var(--white);
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .skill-box h3 {
+            color: var(--charcoal);
+            font-size: 1.3rem;
+            border-bottom: 1px solid var(--alabaster);
+            padding-bottom: 0.5rem;
+        }
+
+        footer {
+            background-color: var(--charcoal);
+            color: var(--white);
+            text-align: center;
+            padding: 6rem 0;
+        }
+
+        footer h2 { color: var(--terracotta); }
+        footer p { color: var(--alabaster); }
+
+        @media (max-width: 900px) {
+            .project-card { grid-template-columns: 1fr; }
+            .carousel { min-height: 350px; }
+            .project-card:nth-child(even) .carousel { order: -1; }
+        }
+    </style>
+</head>
+<body>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Poornima Eraiah</h1>
+            <h2>Senior Interior Designer | 5+ Years Experience</h2>
+            <p style="max-width: 600px;">Dedicated Senior Interior Designer with 5+ years of hands-on experience in residential and commercial interiors. Seeking to leverage my expertise in end-to-end design solutions, team collaboration, and seamless site execution within a forward-thinking design firm.</p>
+            <a href="#projects" class="btn">View Portfolio</a>
+        </div>
+    </section>
+
+    <section class="about">
+        <div class="container">
+            <h2 class="section-title">Professional Value</h2>
+            <div class="about-text">
+                <p>I specialize in end-to-end interior solutions—from concept development and space planning to execution and styling. My work blends functionality, aesthetics, and client lifestyle needs, with a strong focus on Indian homes and modern living. I am highly capable of leading projects from initial client briefs through to final handover, ensuring strict adherence to budgets, timelines, and quality standards.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="projects">
+        <div class="container">
+            <h2 class="section-title">Selected Projects</h2>
+
+            <div class="project-card">
+                <div class="carousel" data-carousel>
+                    <button class="carousel-button prev" data-carousel-button="prev">&#8249;</button>
+                    <button class="carousel-button next" data-carousel-button="next">&#8250;</button>
+                    <ul class="carousel-slides" data-slides>
+                        <li class="slide" data-active>
+                            <img src="1 - Copy.jpg" alt="Living Room Entryway">
+                        </li>
+                        <li class="slide">
+                            <img src="2 - Copy.jpg" alt="Partition Design">
+                        </li>
+                        <li class="slide">
+                            <img src="3 - Copy.jpg" alt="Living Room TV Unit">
+                        </li>
+                        <li class="slide">
+                            <img src="4 - Copy.jpg" alt="Living Room Seating">
+                        </li>
+                    </ul>
+                </div>
+                <div class="project-info">
+                    <div class="project-category">Scope: Complete Interior Design & Execution</div>
+                    <h3>Modern 3BHK Residential Interior</h3>
+                    <p>Led comprehensive interior design and execution for a modern 3BHK, balancing aesthetic appeal with high functionality.</p>
+                    <ul class="tech-list">
+                        <li>Designed and executed a fully modular kitchen featuring tandem drawers and integrated tall units.</li>
+                        <li>Developed a master bedroom equipped with custom sliding wardrobes for optimized space utilization.</li>
+                        <li>Configured a kid's bedroom with highly functional and accessible storage solutions.</li>
+                        <li>Engineered custom false ceiling plans and comprehensive lighting design.</li>
+                        <li>Directed all site coordination and vendor management to ensure seamless project delivery.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-info" style="order: 1;">
+                    <div class="project-category">Scope: Design + Detailing</div>
+                    <h3>Luxury Modular Kitchen</h3>
+                    <p>Engineered an optimized, high-end culinary space focused on premium materiality and seamless operational flow.</p>
+                    <ul class="tech-list">
+                        <li>Specified and integrated soft-close channels along with premium hardware accessories.</li>
+                        <li>Designed durable granite shelving and optimized internal storage for maximum efficiency.</li>
+                        <li>Detailed elegant glass wall cabinets alongside tall pantry units.</li>
+                    </ul>
+                </div>
+                <div class="carousel" data-carousel style="order: 2;">
+                    <button class="carousel-button prev" data-carousel-button="prev">&#8249;</button>
+                    <button class="carousel-button next" data-carousel-button="next">&#8250;</button>
+                    <ul class="carousel-slides" data-slides>
+                        <li class="slide" data-active>
+                            <img src="7 - Copy.jpg" alt="Kitchen View 1">
+                        </li>
+                        <li class="slide">
+                            <img src="8 - Copy.jpg" alt="Kitchen Island">
+                        </li>
+                        <li class="slide">
+                            <img src="9.jpg" alt="Pooja Unit Detail">
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="carousel" data-carousel>
+                    <ul class="carousel-slides" data-slides>
+                        <li class="slide" data-active>
+                            <img src="5 - Copy.jpg" alt="Wardrobe Concept">
+                        </li>
+                    </ul>
+                </div>
+                <div class="project-info">
+                    <div class="project-category">Scope: Design</div>
+                    <h3>Bedroom & Wardrobe Design</h3>
+                    <p>Developed tailored personal spaces focused on space-saving layouts and highly customized internal organization.</p>
+                    <ul class="tech-list">
+                        <li>Designed intelligent space-saving bedroom layouts.</li>
+                        <li>Drafted specifications for both sliding and hinged wardrobe systems.</li>
+                        <li>Configured customized wardrobe internals tailored specifically to client lifestyle requirements.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-info" style="order: 1;">
+                    <div class="project-category">Scope: Space Planning & Design</div>
+                    <h3>Interior Design Studio + Hardware Showroom</h3>
+                    <p>Conceptualized and planned a dual-purpose commercial space functioning as both an active design studio and an immersive hardware showroom.</p>
+                    <ul class="tech-list">
+                        <li>Planned comprehensive layouts including an MD Cabin, a Demo Bedroom, and a Demo Kitchen.</li>
+                        <li>Designed an efficient working design space for internal team operations.</li>
+                        <li>Created dedicated, strategic hardware display zones for client walk-throughs.</li>
+                    </ul>
+                </div>
+                <div class="carousel" data-carousel style="order: 2;">
+                    <ul class="carousel-slides" data-slides>
+                        <li class="slide" data-active>
+                            <img src="6 - Copy.jpg" alt="Hardware Showroom and Studio Layout">
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="experience">
+        <div class="container">
+            <h2 class="section-title">Core Competencies</h2>
+            <div class="skills-grid">
+                <div class="skill-box">
+                    <h3>Design & Planning</h3>
+                    <ul class="tech-list">
+                        <li>Space Planning & Layout Design</li>
+                        <li>Residential & Commercial Interiors</li>
+                        <li>Modular Kitchen & Wardrobe Design</li>
+                        <li>Pooja Units (Modern & Traditional)</li>
+                        <li>Living & Bedroom Styling</li>
+                        <li>Office layouts and workspace designs</li>
+                    </ul>
+                </div>
+                <div class="skill-box">
+                    <h3>Technical Execution</h3>
+                    <ul class="tech-list">
+                        <li>2D Drawings & Working Drawings</li>
+                        <li>Estimate & BOM Preparation</li>
+                        <li>Material & Finish Selection</li>
+                        <li>Factory process monitor</li>
+                        <li>Site Coordination & Execution Support</li>
+                        <li>Client Handling & Vendor Coordination</li>
+                    </ul>
+                </div>
+                <div class="skill-box">
+                    <h3>Software Skills</h3>
+                    <ul class="tech-list">
+                        <li>AutoCAD</li>
+                        <li>SketchUp</li>
+                        <li>3D Visualization & Design Presentation</li>
+                        <li>V-Ray , Enscape , D5</li>
+                        <li>Basic Cabinet vision, Infurnia , Cohoom</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <div class="container">
+            <h2>Open to Full-Time Opportunities</h2>
+            <p style="margin-bottom: 2rem;">Ready to bring my design expertise and project management skills to an established team.</p>
+            <p><strong>Name:</strong> Poornima Eraiah</p>
+            <p><strong>Location:</strong> India</p>
+            <p><strong>Email:</strong> your@email.com</p>
+            <p><strong>Phone:</strong> +91-XXXXXXXXXX</p>
+            <br>
+            <a href="mailto:your@email.com" class="btn" style="background-color: var(--terracotta);">Contact Me Directly</a>
+        </div>
+    </footer>
+
+    <script>
+        const buttons = document.querySelectorAll("[data-carousel-button]");
+
+        buttons.forEach(button => {
+            button.addEventListener("click", () => {
+                const offset = button.dataset.carouselButton === "next" ? 1 : -1;
+                const slides = button.closest("[data-carousel]").querySelector("[data-slides]");
+                
+                const activeSlide = slides.querySelector("[data-active]");
+                let newIndex = [...slides.children].indexOf(activeSlide) + offset;
+                
+                if (newIndex < 0) newIndex = slides.children.length - 1;
+                if (newIndex >= slides.children.length) newIndex = 0;
+
+                slides.children[newIndex].dataset.active = true;
+                delete activeSlide.dataset.active;
+            });
+        });
+    </script>
+
+</body>
+</html>
